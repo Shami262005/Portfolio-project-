@@ -1,0 +1,121 @@
+/* VARIABLES */
+
+:root {
+  --PASTEL-PURPLE: #dfcff3;
+  --DARK-PURPLE: #6e217e;
+  --PASTEL-ROSE: #f6b8d0;
+  --PASTEL-SNOW: #e5ecf8;
+  --PASTEL-LEMON: #f6f3a9;
+  --PASTEL-CREAM: #fffee0;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Quicksand", sans-serif;
+  height: 100vh;
+  overflow: auto;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgb(255, 255, 255);
+  border-bottom: 3px solid black;
+  height: 70px;
+  width: auto;
+  z-index: 1000;
+}
+
+.header-options ul {
+  list-style-type: none;
+}
+.header-options {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  font-weight: 600;
+
+  gap: 3rem;
+}
+.header-link {
+  text-decoration-line: none;
+  color: black;
+}
+
+main {
+  height: calc(100vh - 70px);
+  margin-top: 70px;
+}
+
+.logo-container {
+  font-size: 1.5rem;
+  margin-left: 1rem;
+  font-weight: 800;
+}
+.socials {
+  margin-right: 20px;
+}
+.home-section {
+  height: 99vh;
+  padding: 30px 50px;
+  border-bottom-left-radius: 70px;
+  border-bottom-right-radius: 70px;
+  background-color: var(--PASTEL-PURPLE);
+  /* border-bottom: 3px solid black; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.introduction {
+  display: block;
+  align-items: left;
+}
+.greeting-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: block;
+  justify-content: center;
+  width: 5rem;
+  padding: 0.3rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: var(--PASTEL-SNOW);
+  border-radius: 40px;
+  border: 2px solid black;
+}
+
+.introduction-text {
+  font-size: 3rem;
+  font-weight: 500;
+}
+.introduction-text-small {
+  font-size: 2rem;
+  font-weight: 500;
+}
+.introduction-text strong {
+  font-weight: 600;
+  color: var(--DARK-PURPLE);
+}
+.about-me-section {
+  background-color: white;
+  height: 90vh;
+  padding: 30px 50px;
+}
+.outer-blob {
+  margin-top: 50px;
+  margin-right: 50px;
+  width: 400px;
+  height: 400px;
+  background-color: white;
+  /* The key is the colex border-radius value */
+  border-radius: 60% 30% 50% 70% / 40% 50% 70% 60%;
+}
