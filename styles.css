@@ -1523,9 +1523,9 @@ button {
   }
 
   .work-status {
-    left: 68px;
-    bottom: 65px;
-    font-size: 0.6rem;
+    left: 75px;
+    bottom: 72px;
+    font-size: 0.67rem;
   }
 
   .about-me-box {
@@ -1592,12 +1592,13 @@ button {
     min-width: 0px;
   }
   .project-item {
-    width: 300px;
+    width: 290px;
     align-items: center;
+    overflow-y: hidden;
   }
   .image-box {
-    width: 260px;
-    height: 260px;
+    width: 250px;
+    height: 250px;
   }
   .image-box img {
     width: 200px;
