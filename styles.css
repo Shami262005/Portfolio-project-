@@ -1510,12 +1510,12 @@ button {
     font-size: 1.2rem;
   }
   .home-section {
-    width: 100vw;
+    height: 90vh;
   }
 
   .home-right img {
-    width: 300px;
-    height: 300px;
+    width: 320px;
+    height: 320px;
   }
   .about-left img {
     width: 280px;
