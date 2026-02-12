@@ -1428,11 +1428,11 @@ button {
     height: 20px;
   }
   .education-item h3 {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
   }
 
   .education-item p {
-    font-size: 0.65rem;
+    font-size: 0.75rem;
   }
 
   .contact-left p {
@@ -1470,14 +1470,23 @@ button {
 }
 
 @media (max-width: 480px) {
+  .main {
+    overflow-x: hidden;
+  }
+  .body {
+    overflow-x: hidden;
+  }
   .header {
-    height: 60px;
+    align-content: center;
+    justify-items: center;
+    width: 100%;
   }
 
   .logo-container {
-    margin: 0;
+    margin: auto;
     text-align: center;
-    width: 100%;
+    align-content: center;
+    justify-items: center;
   }
 
   .header-options {
@@ -1577,6 +1586,25 @@ button {
   }
 
   .footer {
+    font-size: 0.75rem;
+  }
+  .education-list {
+    min-width: 0px;
+  }
+  .project-item {
+    width: 300px;
+    align-items: center;
+  }
+  .image-box {
+    width: 260px;
+    height: 260px;
+  }
+  .image-box img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .project-description {
     font-size: 0.75rem;
   }
 }
