@@ -1512,20 +1512,20 @@ button {
   .home-section {
     width: 100vw;
   }
-  .profile-image {
-    width: 250px;
-    height: 250px;
-  }
 
+  .home-right img {
+    width: 300px;
+    height: 300px;
+  }
   .about-left img {
-    width: 250px;
-    height: 250px;
+    width: 280px;
+    height: 280px;
   }
 
   .work-status {
-    left: 20px;
-    bottom: 60px;
-    font-size: 0.65rem;
+    left: 68px;
+    bottom: 65px;
+    font-size: 0.6rem;
   }
 
   .about-me-box {
