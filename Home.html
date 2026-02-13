@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
       rel="stylesheet"
     />
+
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -29,6 +30,9 @@
       <div class="spacer"></div>
     </header>
 
+    <div class="notification" id="notification">
+      <p id="notification-message"></p>
+    </div>
     <main class="main-conent">
       <div class="home-section" id="home">
         <div class="home-left">
@@ -106,7 +110,9 @@
               <div class="resume">
                 <div class="button-wrapper">
                   <div class="button-under"></div>
-                  <div class="button">Download resume</div>
+                  <div class="button" id="download-resume-btn">
+                    Download resume
+                  </div>
                 </div>
               </div>
             </div>
@@ -528,7 +534,9 @@
 
             <div class="button-wrapper-smaller">
               <div class="button-under-smaller"></div>
-              <div class="button-smaller">GitHub Repository</div>
+              <div class="button-smaller" id="hospitalrepo-btn">
+                GitHub Repository
+              </div>
             </div>
           </div>
           <div class="project-item">
@@ -549,7 +557,9 @@
 
             <div class="button-wrapper-smaller">
               <div class="button-under-smaller"></div>
-              <div class="button-smaller">GitHub Repository</div>
+              <div class="button-smaller" id="kelorepo-btn">
+                GitHub Repository
+              </div>
             </div>
           </div>
 
@@ -569,7 +579,9 @@
 
             <div class="button-wrapper-smaller">
               <div class="button-under-smaller"></div>
-              <div class="button-smaller">GitHub Repository</div>
+              <div class="button-smaller" id="hiv-inclusiverepo-btn">
+                GitHub Repository
+              </div>
             </div>
           </div>
         </div>
@@ -646,13 +658,13 @@
             <div class="socials">
               <div class="socials-button-wrapper">
                 <div class="socials-button-under"></div>
-                <div class="socials-button">
+                <div class="socials-button" id="linkedin-btn">
                   <img src="/images/linked-in.png" alt="" />
                 </div>
               </div>
               <div class="socials-button-wrapper">
                 <div class="socials-button-under"></div>
-                <div class="socials-button">
+                <div class="socials-button" id="discord-btn">
                   <img src="/images/discord.png" alt="" />
                 </div>
               </div>
@@ -675,7 +687,7 @@
               <label for="message">Message:</label>
               <textarea
                 name=""
-                id=""
+                id="message"
                 cols="30"
                 rows="7"
                 class="form-input"
@@ -695,5 +707,8 @@
         </div>
       </div>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
