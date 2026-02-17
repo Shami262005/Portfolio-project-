@@ -4,6 +4,28 @@ const hospitalRepoBtn = document.getElementById("hospitalrepo-btn");
 const hivinclusiveRepoBtn = document.getElementById("hiv-inclusiverepo-btn");
 const discordBtn = document.getElementById("discord-btn");
 const linkedinBtn = document.getElementById("linkedin-btn");
+const sections = document.querySelectorAll("main > div[id]");
+const navLinks = document.querySelectorAll(".header-link");
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        navLinks.forEach((link) => link.classList.remove("active"));
+        const activeLink = document.querySelector(
+          `.header-link[href="#${entry.target.id}"]`,
+        );
+        if (activeLink) activeLink.classList.add("active");
+      }
+    });
+  },
+  {
+    rootMargin: "-70px 0px -60% 0px", // triggers as soon as section clears the header
+    threshold: 0,
+  },
+);
+
+sections.forEach((section) => observer.observe(section));
 
 downloadBtn.addEventListener("click", () => {
   const link = document.createElement("a");
@@ -38,25 +60,71 @@ linkedinBtn.addEventListener("click", () => {
 emailjs.init("qTS6RxQLHVE2CzWUN");
 const contactForm = document.querySelector(".message-form");
 const notification = document.getElementById("notification");
-const notificationMessage = document.getElementById("notification-message");
+const notificationIcon = document.getElementById("notification-icon");
+const mainMessage = document.getElementById("main-message");
+const instructions = document.getElementById("instructions");
+const closeBtn = document.getElementById("ok-btn");
+const loadingPopup = document.getElementById("loading-popup");
 
-function showNotification(message, type) {
-  notificationMessage.textContent = message;
-  notification.className = `notification show ${type}`;
+showLoading = () => {
+  loadingPopup.classList.add("show");
+};
 
-  setTimeout(() => {
-    notification.classList.remove("show");
-  }, 4000);
-}
+hideLoading = () => {
+  loadingPopup.classList.remove("show");
+};
 
-contactForm.addEventListener("submit", function (event) {
+showNotification = (mainMsg, instructionsMsg, iconName) => {
+  mainMessage.textContent = mainMsg;
+  instructions.textContent = instructionsMsg;
+  notificationIcon.setAttribute("src", `/images/${iconName}`);
+  notification.className = "notification-popup show";
+};
+
+checkNetworkConnectivity = () => {
+  if (!navigator.onLine) {
+    return false;
+  }
+  return true;
+};
+
+contactForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const message = document.getElementById("message").value;
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
 
-  // Get current time
+  if (!name || !email || !message) {
+    showNotification(
+      "Oops!",
+      "Please fill in all fields before sending",
+      "sad.png",
+    );
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    showNotification(
+      "Invalid Email",
+      "Please enter a valid email address",
+      "sad.png",
+    );
+    return;
+  }
+
+  if (!checkNetworkConnectivity()) {
+    showNotification(
+      "No Connection",
+      "Please check your internet connection and try again",
+      "sad.png",
+    );
+    return;
+  }
+
+  showLoading();
+
   const now = new Date();
   const formattedTime = now.toLocaleString("en-US", {
     month: "short",
@@ -67,26 +135,72 @@ contactForm.addEventListener("submit", function (event) {
     hour12: true,
   });
 
-  // Changed to match your template variables: {{name}}, {{time}}, {{from_email}}, {{message}}
   const templateParams = {
-    name: name, // Changed from 'from_name' to 'name'
-    from_email: email, // This matches {{from_email}}
-    message: message, // This matches {{message}}
-    time: formattedTime, // Added this for {{time}}
+    name: name,
+    from_email: email,
+    message: message,
+    time: formattedTime,
   };
 
   emailjs.send("service_d5nd9an", "template_rd55lch", templateParams).then(
-    function (response) {
-      console.log("SUCCESS!", response.status, response.text);
-      showNotification("Your message has been sent successfully!", "success");
-      contactForm.reset();
-    },
-    function (error) {
-      console.log("FAILED...", error);
-      showNotification(
-        "There was an error sending your message. Please try again later.",
-        "error",
+    (response) => {
+      console.log(response.status);
+
+      emailjs.send("service_d5nd9an", "template_nfpbyw3", templateParams).then(
+        (autoReplyResponse) => {
+          hideLoading();
+          console.log(autoReplyResponse.status);
+          showNotification(
+            "Thank You !!",
+            "Your message has been sent. Check your email for confirmation!",
+            "shy.png",
+          );
+          contactForm.reset();
+        },
+        (autoReplyError) => {
+          hideLoading();
+          console.log(
+            "Auto-reply failed, but main email sent:",
+            autoReplyError,
+          );
+          showNotification(
+            "Thank You !!",
+            "Your message has been sent successfully!",
+            "shy.png",
+          );
+          contactForm.reset();
+        },
       );
     },
+    (error) => {
+      hideLoading();
+      console.log(error);
+
+      if (!checkNetworkConnectivity()) {
+        showNotification(
+          "Connection Lost",
+          "Your internet connection was lost. Please try again",
+          "sad.png",
+        );
+      } else {
+        showNotification(
+          "Oh No",
+          "Something went wrong, please try my other contact mediums provided",
+          "sad.png",
+        );
+      }
+    },
   );
+});
+
+closeBtn.addEventListener("click", () => {
+  notification.classList.remove("show");
+});
+
+window.addEventListener("online", () => {
+  console.log("Connection restored");
+});
+
+window.addEventListener("offline", () => {
+  console.log("Connection lost");
 });

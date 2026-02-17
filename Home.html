@@ -21,8 +21,9 @@
         <li><a href="#home" class="header-link">Home</a></li>
         <li><a href="#about-me" class="header-link">About Me</a></li>
         <li><a href="#expertise" class="header-link">Expertise</a></li>
-        <li><a href="#projects" class="header-link">Projects</a></li>
         <li><a href="#experience" class="header-link">Experience</a></li>
+        <li><a href="#projects" class="header-link">Projects</a></li>
+
         <li><a href="#education" class="header-link">Education</a></li>
         <li><a href="#contact-me" class="header-link">Contact Me</a></li>
       </ul>
@@ -30,8 +31,21 @@
       <div class="spacer"></div>
     </header>
 
-    <div class="notification" id="notification">
-      <p id="notification-message"></p>
+    <div class="notification-popup" id="notification">
+      <img id="notification-icon" src="" />
+      <strong id="main-message"></strong> <br />
+      <p id="instructions"></p>
+
+      <div class="btn-wrapper btn-wrapper--small">
+        <div class="btn-shadow"></div>
+        <div class="btn btn--small" id="ok-btn">Ok</div>
+      </div>
+    </div>
+
+    <div id="loading-popup" class="loading-popup">
+      <img src="images/blob-icon.png" alt="" />
+
+      <h3>LOADING...</h3>
     </div>
     <main class="main-conent">
       <div class="home-section" id="home">
@@ -49,14 +63,16 @@
             concepts into <strong>something real.</strong>
           </p>
 
-          <div class="button-wrapper">
-            <div class="button-under"></div>
-            <div class="button" onclick="window.location.href = '#about-me'">
+          <div class="btn-wrapper btn-wrapper--large">
+            <div class="btn-shadow"></div>
+            <div
+              class="btn btn--large"
+              onclick="window.location.href = '#about-me'"
+            >
               About Me
             </div>
           </div>
         </div>
-
         <div class="home-right">
           <img src="images/profile-image-1.png" alt="" class="profile-image" />
         </div>
@@ -108,9 +124,9 @@
               improvement, and always aspire to provide the
               <strong>best results.</strong>
               <div class="resume">
-                <div class="button-wrapper">
-                  <div class="button-under"></div>
-                  <div class="button" id="download-resume-btn">
+                <div class="btn-wrapper btn-wrapper--large">
+                  <div class="btn-shadow"></div>
+                  <div class="btn btn--large" id="download-resume-btn">
                     Download resume
                   </div>
                 </div>
@@ -532,9 +548,9 @@
               <strong>HTML, CSS, JavaScript, PHP and MySQL</strong>.
             </p>
 
-            <div class="button-wrapper-smaller">
-              <div class="button-under-smaller"></div>
-              <div class="button-smaller" id="hospitalrepo-btn">
+            <div class="btn-wrapper btn-wrapper--small">
+              <div class="btn-shadow"></div>
+              <div class="btn btn--small" id="hospitalrepo-btn">
                 GitHub Repository
               </div>
             </div>
@@ -555,9 +571,9 @@
               >
             </p>
 
-            <div class="button-wrapper-smaller">
-              <div class="button-under-smaller"></div>
-              <div class="button-smaller" id="kelorepo-btn">
+            <div class="btn-wrapper btn-wrapper--small">
+              <div class="btn-shadow"></div>
+              <div class="btn btn--small" id="kelorepo-btn">
                 GitHub Repository
               </div>
             </div>
@@ -577,9 +593,9 @@
               <strong>Express.js</strong>.
             </p>
 
-            <div class="button-wrapper-smaller">
-              <div class="button-under-smaller"></div>
-              <div class="button-smaller" id="hiv-inclusiverepo-btn">
+            <div class="btn-wrapper btn-wrapper--small">
+              <div class="btn-shadow"></div>
+              <div class="btn btn--small" id="hiv-inclusiverepo-btn">
                 GitHub Repository
               </div>
             </div>
@@ -654,18 +670,19 @@
                 >shamirav2005@gmail.com</a
               >
             </p>
-
             <div class="socials">
-              <div class="socials-button-wrapper">
-                <div class="socials-button-under"></div>
-                <div class="socials-button" id="linkedin-btn">
-                  <img src="/images/linked-in.png" alt="" />
+              <!-- Social / icon button -->
+              <div class="btn-wrapper btn-wrapper--social">
+                <div class="btn-shadow"></div>
+                <div class="btn btn--social" id="linkedin-btn">
+                  <img src="/images/linked-in.png" alt="LinkedIn" />
                 </div>
               </div>
-              <div class="socials-button-wrapper">
-                <div class="socials-button-under"></div>
-                <div class="socials-button" id="discord-btn">
-                  <img src="/images/discord.png" alt="" />
+              <!-- Social / icon button -->
+              <div class="btn-wrapper btn-wrapper--social">
+                <div class="btn-shadow"></div>
+                <div class="btn btn--social" id="discord-btn">
+                  <img src="/images/discord.png" alt="Discord" />
                 </div>
               </div>
             </div>
@@ -674,12 +691,12 @@
           <form class="message-form" action="">
             <div class="name-email">
               <div class="name-wrapper">
-                <label for="name">Name:</label>
+                <label for="name">Fullname:</label>
                 <input type="text" id="name" class="form-input" />
               </div>
               <div class="email-wrapper">
                 <label for="email">Email:</label>
-                <input type="email" id="email" class="form-input" />
+                <input type="text" id="email" class="form-input" />
               </div>
             </div>
 
@@ -694,9 +711,9 @@
               ></textarea>
             </div>
 
-            <div class="button-wrapper-smaller">
-              <div class="button-under-smaller"></div>
-              <button type="submit" class="button-smaller">Send Message</button>
+            <div class="btn-wrapper btn-wrapper--small">
+              <div class="btn-shadow"></div>
+              <button class="btn btn--small">Send Message</button>
             </div>
           </form>
         </div>
