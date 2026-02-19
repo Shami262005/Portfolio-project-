@@ -311,7 +311,7 @@ const expertiseObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.3 },
+  { threshold: 0 },
 );
 
 expertiseObserver.observe(document.querySelector(".expertise-section"));
