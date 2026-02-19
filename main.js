@@ -7,6 +7,7 @@ const linkedinBtn = document.getElementById("linkedin-btn");
 const sections = document.querySelectorAll("main > div[id]");
 const navLinks = document.querySelectorAll(".header-link");
 
+// Section and active header link logic
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -20,13 +21,14 @@ const observer = new IntersectionObserver(
     });
   },
   {
-    rootMargin: "-70px 0px -60% 0px", // triggers as soon as section clears the header
+    rootMargin: "-70px 0px -60% 0px",
     threshold: 0,
   },
 );
 
 sections.forEach((section) => observer.observe(section));
 
+//Download button logic
 downloadBtn.addEventListener("click", () => {
   const link = document.createElement("a");
   link.href = "/files/shamiso-vushe-resume.pdf";
@@ -34,6 +36,7 @@ downloadBtn.addEventListener("click", () => {
   link.click();
 });
 
+//Project buttons
 kelorepoBtn.addEventListener("click", () => {
   window.open("https://github.com/Lengalela/KeloTech", "_blank");
 });
@@ -57,6 +60,7 @@ linkedinBtn.addEventListener("click", () => {
   window.open("https://www.linkedin.com/in/shamiso-vushe-100640280", "_blank");
 });
 
+//Contact form and send message button logic
 emailjs.init("qTS6RxQLHVE2CzWUN");
 const contactForm = document.querySelector(".message-form");
 const notification = document.getElementById("notification");
@@ -197,10 +201,316 @@ closeBtn.addEventListener("click", () => {
   notification.classList.remove("show");
 });
 
-window.addEventListener("online", () => {
-  console.log("Connection restored");
+//Bringing website to life as you open
+
+//Home Section
+const homeElements = document.querySelectorAll(
+  ".greeting-tag, .introduction-text-large, .introduction-text-medium, .intro-description, .btn-wrapper--large, .home-right img",
+);
+//Initail state or postion of elements
+homeElements.forEach((element) => {
+  element.style.opacity = "0";
+  element.style.transform = "translateY(30px)";
+  element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
 });
 
-window.addEventListener("offline", () => {
-  console.log("Connection lost");
+//after certian amoutn of tiem bring each element itno view one after the other following one another
+homeElements.forEach((el, index) => {
+  setTimeout(
+    () => {
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+    },
+    200 + index * 150,
+  );
 });
+
+const greetingTag = document.querySelector(".greeting-tag");
+const lastDelay = 200 + (homeElements.length - 1) * 150;
+const fadeDuration = 600;
+
+setTimeout(() => {
+  greetingTag.style.animation = "tilt 0.4s ease-in-out 3";
+  greetingTag.addEventListener("animationend", () => {
+    greetingTag.style.animation = "none";
+  });
+  setTimeout(() => {
+    const letters = document.querySelectorAll(".bounce-letter");
+    letters.forEach((letter, i) => {
+      setTimeout(() => {
+        letter.style.animationPlayState = "running";
+      }, i * 80);
+    });
+  }, 1400);
+}, lastDelay + fadeDuration);
+
+//About section
+const aboutLeft = document.querySelector(".about-left img");
+const aboutBox = document.querySelector(".about-me-box");
+const aboutBtn = document.querySelector(".resume .btn-wrapper");
+
+[aboutLeft, aboutBox, aboutBtn].forEach((el) => {
+  if (el) {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(50px)";
+    el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+  }
+});
+
+const aboutObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        [aboutLeft, aboutBox, aboutBtn].forEach((el, index) => {
+          setTimeout(() => {
+            if (el) {
+              el.style.opacity = "1";
+              el.style.transform = "translateY(0)";
+            }
+          }, index * 250);
+        });
+        aboutObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.3 },
+);
+
+aboutObserver.observe(document.querySelector(".about-me-section"));
+
+//Expertise section
+const skillItems = document.querySelectorAll(".expertise-section .skill-item");
+
+skillItems.forEach((el) => {
+  el.style.opacity = "0";
+  el.style.transform = "translateY(30px)";
+  el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+});
+
+const expertiseObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const rows = {};
+        skillItems.forEach((el) => {
+          const top = Math.round(el.getBoundingClientRect().top);
+          if (!rows[top]) rows[top] = [];
+          rows[top].push(el);
+        });
+
+        Object.values(rows).forEach((rowItems, rowIndex) => {
+          rowItems.forEach((el) => {
+            setTimeout(() => {
+              el.style.opacity = "1";
+              el.style.transform = "translateY(0)";
+            }, rowIndex * 250);
+          });
+        });
+
+        expertiseObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.3 },
+);
+
+expertiseObserver.observe(document.querySelector(".expertise-section"));
+
+//Experience section
+const expLeftElements = document.querySelectorAll(".desktop-experience .left");
+const expRightElements = document.querySelectorAll(
+  ".desktop-experience .right",
+);
+const mobileHeaders = document.querySelectorAll(".mobile-titles");
+const mobileContents = document.querySelectorAll(".mobile-content");
+const robot = document.querySelector(".robot");
+const butterfly = document.querySelector(".butterfly-2");
+
+expLeftElements.forEach((el) => {
+  el.style.opacity = "0";
+  el.style.transform = "translateX(-80px)";
+  el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+});
+
+expRightElements.forEach((el) => {
+  el.style.opacity = "0";
+  el.style.transform = "translateX(80px)";
+  el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+});
+
+mobileHeaders.forEach((el) => {
+  el.style.opacity = "0";
+  el.style.transform = "translateY(40px)";
+  el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+});
+
+mobileContents.forEach((el) => {
+  el.style.opacity = "0";
+  el.style.transform = "translateY(40px)";
+  el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+});
+
+if (robot) {
+  robot.style.opacity = "0";
+  robot.style.transform = "translateX(-60px)";
+  robot.style.transition = "opacity 1s ease, transform 1s ease";
+}
+
+if (butterfly) {
+  butterfly.style.opacity = "0";
+  butterfly.style.transform = "translateX(60px)";
+  butterfly.style.transition = "opacity 1s ease, transform 1s ease";
+}
+
+const experienceObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const experienceItems = document.querySelectorAll(".experience-item");
+
+        if (robot) {
+          robot.style.opacity = "1";
+          robot.style.transform = "translateX(0)";
+        }
+        if (butterfly) {
+          butterfly.style.opacity = "1";
+          butterfly.style.transform = "translateX(0)";
+        }
+
+        experienceItems.forEach((item, index) => {
+          setTimeout(() => {
+            const left = item.querySelector(".desktop-experience .left");
+            const right = item.querySelector(".desktop-experience .right");
+            if (left) {
+              left.style.opacity = "1";
+              left.style.transform = "translateX(0)";
+            }
+            if (right) {
+              right.style.opacity = "1";
+              right.style.transform = "translateX(0)";
+            }
+
+            const mobileTitle = item.querySelector(".mobile-titles");
+            const mobileContent = item.querySelector(".mobile-content");
+            if (mobileTitle) {
+              mobileTitle.style.opacity = "1";
+              mobileTitle.style.transform = "translateY(0)";
+            }
+            if (mobileContent) {
+              mobileContent.style.opacity = "1";
+              mobileContent.style.transform = "translateY(0)";
+            }
+          }, index * 400);
+        });
+
+        experienceObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.3 },
+);
+
+experienceObserver.observe(document.querySelector(".experience-section"));
+
+//Projects section
+const projectItems = document.querySelectorAll(".project-item");
+
+projectItems.forEach((el) => {
+  el.style.opacity = "0";
+  el.style.transform = "translateY(40px)";
+  el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+});
+
+const projectsObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        projectItems.forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+          }, index * 200);
+        });
+
+        projectsObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.3 },
+);
+
+projectsObserver.observe(document.querySelector(".projects-section"));
+
+//Education section
+const educationItems = document.querySelectorAll(".education-item");
+const educationImage = document.querySelector(".right-image img");
+
+educationItems.forEach((el) => {
+  el.style.opacity = "0";
+  el.style.transform = "translateX(-60px)";
+  el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+});
+
+if (educationImage) {
+  educationImage.style.opacity = "0";
+  educationImage.style.transform = "translateX(60px)";
+  educationImage.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+}
+
+const educationObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        educationItems.forEach((el, index) => {
+          setTimeout(() => {
+            el.style.opacity = "1";
+            el.style.transform = "translateX(0)";
+          }, index * 200);
+        });
+
+        if (educationImage) {
+          educationImage.style.opacity = "1";
+          educationImage.style.transform = "translateX(0)";
+        }
+
+        educationObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.3 },
+);
+
+educationObserver.observe(document.querySelector(".education-section"));
+
+//Contact section
+const contactLeft = document.querySelector(".contact-left");
+
+[contactLeft, contactForm].forEach((el) => {
+  if (el) {
+    el.style.opacity = "0";
+    el.style.transform = "translateY(40px)";
+    el.style.transition = "opacity 0.7s ease, transform 0.7s ease";
+  }
+});
+
+const contactObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        [contactLeft, contactForm].forEach((el, index) => {
+          setTimeout(() => {
+            if (el) {
+              el.style.opacity = "1";
+              el.style.transform = "translateY(0)";
+            }
+          }, index * 250);
+        });
+
+        contactObserver.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.3 },
+);
+
+contactObserver.observe(document.querySelector(".contact-me-section"));

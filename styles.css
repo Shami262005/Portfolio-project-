@@ -418,8 +418,6 @@ main {
   margin-top: 50px;
   gap: 50px;
   justify-content: center;
-  max-height: 1000px;
-  overflow: auto;
 }
 
 .skill-item {
@@ -1005,6 +1003,42 @@ button {
   50% {
     transform: translateY(-20px);
   }
+}
+
+@keyframes tilt {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-8deg);
+  }
+  75% {
+    transform: rotate(8deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes letterBounce {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-7px);
+  }
+  60% {
+    transform: translateY(4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.bounce-letter {
+  display: inline-block;
+  animation: letterBounce 0.9s ease forwards;
+  animation-play-state: paused;
 }
 
 @media (max-width: 1220px) {
