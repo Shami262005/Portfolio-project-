@@ -1,3 +1,12 @@
+// Disable browser scroll restoration
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+// Force scroll to top on page load
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);
+});
 const downloadBtn = document.getElementById("download-resume-btn");
 const kelorepoBtn = document.getElementById("kelorepo-btn");
 const hospitalRepoBtn = document.getElementById("hospitalrepo-btn");
@@ -207,13 +216,6 @@ closeBtn.addEventListener("click", () => {
 const homeElements = document.querySelectorAll(
   ".greeting-tag, .introduction-text-large, .introduction-text-medium, .intro-description, .btn-wrapper--large, .home-right img",
 );
-//Initail state or postion of elements
-homeElements.forEach((element) => {
-  element.style.opacity = "0";
-  element.style.transform = "translateY(30px)";
-  element.style.transition = "opacity 0.6s ease, transform 0.6s ease";
-});
-
 //after certian amoutn of tiem bring each element itno view one after the other following one another
 homeElements.forEach((el, index) => {
   setTimeout(
@@ -283,7 +285,7 @@ const skillItems = document.querySelectorAll(".expertise-section .skill-item");
 
 skillItems.forEach((el) => {
   el.style.opacity = "0";
-  el.style.transform = "translateY(30px)";
+  el.style.transform = "translateY(40px)";
   el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
 });
 
@@ -311,7 +313,7 @@ const expertiseObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0 },
+  { threshold: 0.1 },
 );
 
 expertiseObserver.observe(document.querySelector(".expertise-section"));

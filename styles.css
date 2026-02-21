@@ -1041,6 +1041,19 @@ button {
   animation-play-state: paused;
 }
 
+.greeting-tag,
+.introduction-text-large,
+.introduction-text-medium,
+.intro-description,
+.btn-wrapper--large,
+.home-right img {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
 @media (max-width: 1220px) {
   .header-options {
     gap: 1.5rem;
