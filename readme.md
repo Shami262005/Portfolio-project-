@@ -1,8 +1,8 @@
 # Shamiso Vushe — Portfolio
 
-🔗 **Live Site:** [shamiso-vushe.com](https://shamiso-vushe.com) ← replace with your actual link
+🔗 **Live Site:** https://shamisovushe.netlify.app/
 
-A personal portfolio website built with vanilla HTML, CSS, and JavaScript.
+A personal portfolio website built with  HTML, CSS, and vanilla JavaScript.
 
 ---
 
